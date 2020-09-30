@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,6 +9,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float xPadding = 0.5f;
     [SerializeField] private float yPadding = 0.5f;
+    [SerializeField] private GameObject playerLaser;
+    [SerializeField] private float projectileSpeed = 10f;
+    [SerializeField] private float projectileFiringPeriod = 0.5f;
+
+    private Coroutine firingCoroutine;
     
     private float xMin;
     private float xMax;
@@ -20,6 +26,13 @@ public class Player : MonoBehaviour
     {
         SetUpMoveBoundaries();
     }
+    
+    void Update()
+    {
+        Move();
+        Fire();
+    }
+    
 
     private void SetUpMoveBoundaries()
     {
@@ -31,12 +44,31 @@ public class Player : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Fire()
     {
-        Move();
+        if (Input.GetButtonDown("Fire1"))
+        {
+            firingCoroutine = StartCoroutine(FireContinuously());
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            StopCoroutine(firingCoroutine);
+        }
     }
 
+    IEnumerator FireContinuously()
+    {
+        while (true)
+        {
+            GameObject laser = Instantiate(
+                playerLaser,
+                transform.position,
+                quaternion.identity) as GameObject;
+            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+            yield return new WaitForSeconds(projectileFiringPeriod);
+        }
+    }
+    
     private void Move()
     {
         var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
