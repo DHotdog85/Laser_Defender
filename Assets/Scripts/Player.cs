@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float yPadding = 0.5f;
     [SerializeField] private GameObject playerLaser;
     [SerializeField] private float projectileSpeed = 10f;
-    [SerializeField] private float projectileFiringPeriod = 0.5f;
+    [SerializeField] private float projectileFiringPeriod = 0.2f;
 
     private Coroutine firingCoroutine;
     

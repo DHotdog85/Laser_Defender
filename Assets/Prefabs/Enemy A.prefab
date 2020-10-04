@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 806394124970637519}
   - component: {fileID: 806394124970637518}
   - component: {fileID: 1506549660400153098}
+  - component: {fileID: -4713651311308227038}
+  - component: {fileID: -7140335149876807124}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,5 +96,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa8e22e03576e842e9a45cb502a043c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveConfig: {fileID: 11400000, guid: a2fc7eff5f5f2cd768727193eea2dce3, type: 2}
-  moveSpeed: 2
+--- !u!114 &-4713651311308227038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806394124970637517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6491a0ed3cab7739c86ca6207771a4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+--- !u!58 &-7140335149876807124
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806394124970637517}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.465

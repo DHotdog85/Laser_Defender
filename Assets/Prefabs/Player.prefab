@@ -99,3 +99,5 @@ MonoBehaviour:
   yPadding: 0.5
   playerLaser: {fileID: 5733234275751689539, guid: d37a437d6d3e7d0769566356249bc7e9,
     type: 3}
+  projectileSpeed: 10
+  projectileFiringPeriod: 0.2
