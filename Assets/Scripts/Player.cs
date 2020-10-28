@@ -6,9 +6,13 @@ using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player")]
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float xPadding = 0.5f;
     [SerializeField] private float yPadding = 0.5f;
+    [SerializeField] private int health = 200;
+    
+    [Header("Projectile")]
     [SerializeField] private GameObject playerLaser;
     [SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private float projectileFiringPeriod = 0.2f;
@@ -76,5 +80,22 @@ public class Player : MonoBehaviour
         var newXPosition = Mathf.Clamp(transform.position.x + deltaX, xMin, xMax);
         var newYPosition = Mathf.Clamp(transform.position.y + deltaY, yMin, yMax);
         transform.position = new Vector2(newXPosition,newYPosition);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        if (!damageDealer) { return; }
+        ProcessHit(damageDealer);
+    }
+
+    private void ProcessHit(DamageDealer damageDealer)
+    {
+        health -= damageDealer.GetDamage();
+        damageDealer.Hit();
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

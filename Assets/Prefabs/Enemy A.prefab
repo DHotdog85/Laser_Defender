@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1506549660400153098}
   - component: {fileID: -4713651311308227038}
   - component: {fileID: -7140335149876807124}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,6 +109,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  shotCounter: 0
+  minTimeBetweenShots: 0.2
+  maxTimeBetweenShots: 3
+  enemyLaser: {fileID: 5733234275751689539, guid: 069a1287944520aa9aa28f9b487fdd4d,
+    type: 3}
+  enemyProjectileSpeed: 10
+  explosionEffect: {fileID: 929460413031126395, guid: 5b473674383cdadce9f0fc824babd2f5,
+    type: 3}
+  explosionDuration: 1
 --- !u!58 &-7140335149876807124
 CircleCollider2D:
   m_ObjectHideFlags: 0
