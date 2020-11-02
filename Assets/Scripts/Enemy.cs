@@ -7,22 +7,24 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Enemy")]
+    [Header("Enemy Stats")]
     [SerializeField] private float health = 100f;
-    [SerializeField] private GameObject explosionEffect;
-    [SerializeField] private float explosionDuration = 1f;
-    [SerializeField] private AudioClip deathSound;
-    [SerializeField] [Range(0,1)] private float deathSoundVolume = 0.75f;
+    [SerializeField] private int scoreValue = 100;
 
     [Header("Projectile")]
-    [SerializeField] private float shotCounter;
+    private float shotCounter;
     [SerializeField] private float minTimeBetweenShots = 0.2f;
     [SerializeField] private float maxTimeBetweenShots = 3f;
     [SerializeField] private GameObject enemyLaser;
     [SerializeField] private float enemyProjectileSpeed = 10f;
+
+    [Header("Effects")]
+    [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private float explosionDuration = 1f;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] [Range(0,1)] private float deathSoundVolume = 0.75f;
     [SerializeField] private AudioClip laserBlastSound;
     [SerializeField] [Range(0, 1)] private float laserBlastVolume = 0.5f;
-
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +77,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        FindObjectOfType<GameSession>().AddToScore(scoreValue);
         Destroy(gameObject);
         GameObject explosion = Instantiate(
             explosionEffect,
