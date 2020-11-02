@@ -7,14 +7,21 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Enemy")]
     [SerializeField] private float health = 100f;
+    [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private float explosionDuration = 1f;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] [Range(0,1)] private float deathSoundVolume = 0.75f;
+
+    [Header("Projectile")]
     [SerializeField] private float shotCounter;
     [SerializeField] private float minTimeBetweenShots = 0.2f;
     [SerializeField] private float maxTimeBetweenShots = 3f;
     [SerializeField] private GameObject enemyLaser;
     [SerializeField] private float enemyProjectileSpeed = 10f;
-    [SerializeField] private GameObject explosionEffect;
-    [SerializeField] private float explosionDuration = 1f;
+    [SerializeField] private AudioClip laserBlastSound;
+    [SerializeField] [Range(0, 1)] private float laserBlastVolume = 0.5f;
 
 
     // Start is called before the first frame update
@@ -46,6 +53,7 @@ public class Enemy : MonoBehaviour
             transform.position,
             quaternion.identity) as GameObject;
         laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -enemyProjectileSpeed);
+        AudioSource.PlayClipAtPoint(laserBlastSound, Camera.main.transform.position, laserBlastVolume);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -73,5 +81,6 @@ public class Enemy : MonoBehaviour
             transform.position,
             transform.rotation) as GameObject;
         Destroy(explosion, explosionDuration);
+        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position, deathSoundVolume);
     }
 }

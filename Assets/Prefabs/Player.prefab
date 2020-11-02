@@ -99,10 +99,14 @@ MonoBehaviour:
   xPadding: 0.5
   yPadding: 0.5
   health: 200
+  deathSound: {fileID: 8300000, guid: d13322a739fda26c984e3019b674b468, type: 3}
+  deathSoundVolume: 0.75
   playerLaser: {fileID: 5733234275751689539, guid: d37a437d6d3e7d0769566356249bc7e9,
     type: 3}
   projectileSpeed: 10
   projectileFiringPeriod: 0.2
+  laserBlastSound: {fileID: 8300000, guid: e4939e013f0f0d1db8821358dec8edc8, type: 3}
+  laserBlastVolume: 0.25
 --- !u!60 &-611799500709312123
 PolygonCollider2D:
   m_ObjectHideFlags: 0
